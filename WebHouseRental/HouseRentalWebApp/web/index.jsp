@@ -280,7 +280,6 @@
                 out.println("<a href='book.jsp?idrumah="+ result.get(i).getId() +"' class='btn btn-primary btn-xl text-uppercase'> Book Now! </a>");
                 out.println("</div></div></div></div></div></div></div>");
             }
-	out.println("Result = "+result);
     } catch (Exception ex) {
 	// TODO handle custom exceptions here
     }

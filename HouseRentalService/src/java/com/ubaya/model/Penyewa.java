@@ -90,7 +90,7 @@ public class Penyewa {
             state = (Statement)connect.createStatement();
             if (!connect.isClosed()) {
                 
-                String query = "Insert into penyewa (username,password,nama,nomor telephone) VALUES (?, ?, ?, ?)";
+                String query = "Insert into penyewa (username,password,nama,nomor telepon) VALUES (?, ?, ?, ?)";
                 
                 PreparedStatement sql = (PreparedStatement)connect.prepareStatement(query);
                 
