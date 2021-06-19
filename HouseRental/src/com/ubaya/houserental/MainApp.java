@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package houserental;
+package com.ubaya.houserental;
 
 /**
  *
@@ -55,7 +55,6 @@ public class MainApp extends javax.swing.JFrame {
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\Distributed Programming\\HouseRental\\Res\\icons8-missed-call-64.png")); // NOI18N
         jLabel1.setText("CALL");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
