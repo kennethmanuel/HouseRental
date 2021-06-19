@@ -10,6 +10,7 @@ import com.mysql.jdbc.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,10 +18,12 @@ import javax.swing.JOptionPane;
  * @author Mario
  */
 public class Penyewa {
+
     private String username;
     private String password;
     private String fullname;
     private String notelp;
+
     Connection connect;
     Statement state;
     ResultSet result;
@@ -67,33 +70,27 @@ public class Penyewa {
     public void setNotelp(String notelp) {
         this.notelp = notelp;
     }
-    
-    public Connection getConnection(){
-        try
-        {
+
+    public Connection getConnection() {
+        try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            
-            connect = DriverManager.getConnection("jdbc:mysql://localhost/houserental","root","");
-            
-        }
-        catch (Exception e)
-        {
+            connect = DriverManager.getConnection("jdbc:mysql://localhost/houserental", "root", "");
+        } catch (Exception e) {
             System.out.println(e);
         }
         return connect;
     }
-    
-    public void insert (){
+
+    public void insert() {
         getConnection();
-        try
-        {
-            state = (Statement)connect.createStatement();
+        try {
+            state = (Statement) connect.createStatement();
             if (!connect.isClosed()) {
-                
-                String query = "Insert into penyewa (username,password,nama,nomor telepon) VALUES (?, ?, ?, ?)";
-                
-                PreparedStatement sql = (PreparedStatement)connect.prepareStatement(query);
-                
+
+                String query = "Insert into penyewa (`username`, `password` ,`nama` , `nomor telepon`) VALUES (?, ?, ?, ?)";
+
+                PreparedStatement sql = (PreparedStatement) connect.prepareStatement(query);
+
                 sql.setString(1, getUsername());
                 sql.setString(2, getPassword());
                 sql.setString(3, getFullname());
@@ -101,52 +98,28 @@ public class Penyewa {
                 sql.executeUpdate();
             }
             connect.close();
-        }
-        catch(Exception ex)
-        {
+        } catch (Exception ex) {
             System.out.println(ex);
         }
     }
     
-    public String Login(String uname, String pwd){
-        try
-        {
-            Statement state;
-            ResultSet result;
-            
-            state = (Statement)getConnection().createStatement();
-            
-            if (!getConnection().isClosed()) {
-                
-                String query = "SELECT * FROM penyewa where username = ? AND password = ?";
-                
-                PreparedStatement sql = (PreparedStatement)connect.prepareStatement(query);
-                
-                sql.setString(1, uname);
-                sql.setString(2, pwd);
-
-                sql.execute();
-                
-                result = sql.getResultSet();
-                result.next();
-                
-                int jumlahData = result.getRow();
-                
-                if(jumlahData == 1)
-                {
-                    return "SUKSES";
-                }
-                else
-                {
-                    return "GAGAL";
-                }
+    public ArrayList<String> displayToString() {
+        
+        ArrayList<String> temp = new ArrayList<String>();
+        try {
+            state = (Statement) connect.createStatement();
+            result = state.executeQuery("SELECT * FROM penyewa");
+            while(result.next() == true) {
+                Penyewa penyewa = new Penyewa(
+                        result.getString("username"), 
+                        result.getString("password"), 
+                        result.getString("nama"), 
+                        result.getString("nomor telepon"));
+                temp.add(penyewa.username + "-" + penyewa.password + "-" + penyewa.fullname + "-" + penyewa.notelp);
             }
-            getConnection().close();
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
-        catch(Exception ex)
-        {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Warning", JOptionPane.WARNING_MESSAGE);
-        }
-        return"";
+        return temp;
     }
 }

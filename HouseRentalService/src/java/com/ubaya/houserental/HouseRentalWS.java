@@ -20,7 +20,7 @@ import javax.jws.WebParam;
  * @author Mario
  */
 @WebService(serviceName = "HouseRentalWebService")
-public class HouseRentalWebService {
+public class HouseRentalWS {
 
     Sewa sewa;
     /**
@@ -50,28 +50,5 @@ public class HouseRentalWebService {
         Rumah rumah = new Rumah();
         return rumah.getRumah();
     }
-
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "register")
-    public void register(@WebParam(name = "username") String username, @WebParam(name = "password") String password, @WebParam(name = "fullname") String fullname, @WebParam(name = "notelp") String notelp) {
-        //TODO write your implementation code here:
-        Penyewa p = new Penyewa(username, password, fullname, notelp);
-        p.insert();
-    }
-
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "login")
-    public String login(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
-        //TODO write your implementation code here:
-        return null;
-    }
-
-    /**
-     * Web service operation
-     */
 
 }
