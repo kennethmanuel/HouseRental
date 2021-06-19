@@ -21,11 +21,30 @@
     <!-- my css -->
     <link rel="stylesheet" href="css/css.css" />
     <title>Hello, world!</title>
-  </head>
-  <% 
+  </head    
+    <%-- start web service invocation --%><hr/>
+    <%
+	com.ubaya.houserental.HouseRentalWebService_Service service = new com.ubaya.houserental.HouseRentalWebService_Service();
+	com.ubaya.houserental.HouseRentalWebService port = service.getHouseRentalWebServicePort();
+	 // TODO initialize WS operation arguments here
+	
+	// TODO process result here
+	
+    
+	
         LocalDate today = LocalDate.now();
         String ym;
         YearMonth yem = YearMonth.of(2021, 1);
+        if (session.getAttribute("username") == null) {
+             response.sendRedirect("login.html");
+            }
+        int idrumah =0;
+        if (request.getParameterMap().containsKey("idrumah")) {
+                idrumah = Integer.valueOf(request.getParameter("idrumah"));
+            }
+        else{
+            response.sendRedirect("index.html");
+        }
         if (request.getParameterMap().containsKey("ym")) 
         {
           String[] yearmonth = request.getParameter("ym").split("-");
@@ -38,6 +57,7 @@
           yem = YearMonth.now();
         }
         ym = yem.toString();
+        java.util.List<java.lang.String> result = port.getTanggalSewaPerBulan(ym, idrumah);
         int totalDate = yem.lengthOfMonth();
         ArrayList<String> weeks = new ArrayList<String>();
         String week="";
@@ -50,13 +70,16 @@
         for (int day = 1; day <= totalDate; day++, str++) 
         {
             String date = ym + "-"+day;
-            if (today.toString().equals(date)) 
+            if (day <= result.size()) {
+                week += "<td class ='bg-danger'>";
+            }
+            else if (today.toString().equals(date)) 
             {
-                week += "<td class ='bg-primary'>";
+                week += "<td class ='available bg-primary cursor-pointer'>";
             }
             else
             {
-                week += "<td class='bg-success cursor-pointer'>";
+                week += "<td class='available bg-success cursor-pointer'>";
             }
             week+= day+"</td>";
             
@@ -78,7 +101,7 @@
     <div class="container">
       <ul class="list-inline text-center">
         <li class="list-inline-item"><a class="btn btn-link" href="?ym=<%=prev%>">Prev</a></li>
-        <li class="list-inline-item fw-bold title"><%= ym %></li>
+        <li class="list-inline-item fw-bold title fs-3"><%= ym %></li>
         <li class="list-inline-item"><a class="btn btn-link" href="?ym=<%=next%>">Next</a></li>
       </ul>
       <p class="text-center fw-bold fs-3">Choose your day</p>
@@ -131,7 +154,8 @@
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <%-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script> --%>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

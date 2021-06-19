@@ -1,9 +1,9 @@
-const book = document.querySelectorAll(".bg-success,.bg-primary");
+const book = document.querySelectorAll(".available");
 
 for (let index = 0; index < book.length; index++) {
   book[index].addEventListener("click", function () {
-    book[index].classList.add("bg-warning");
-    book[index].classList.remove("bg-sucess");
+    book[index].classList.toggle("bg-warning");
+    book[index].classList.toggle("bg-success");
   });
 }
 
