@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ubaya.model;
+package com.ubaya.houserental;
 
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
@@ -102,18 +102,18 @@ public class Penyewa {
             System.out.println(ex);
         }
     }
-    
+
     public ArrayList<String> displayToString() {
-        
+
         ArrayList<String> temp = new ArrayList<String>();
         try {
             state = (Statement) connect.createStatement();
             result = state.executeQuery("SELECT * FROM penyewa");
-            while(result.next() == true) {
+            while (result.next() == true) {
                 Penyewa penyewa = new Penyewa(
-                        result.getString("username"), 
-                        result.getString("password"), 
-                        result.getString("nama"), 
+                        result.getString("username"),
+                        result.getString("password"),
+                        result.getString("nama"),
                         result.getString("nomor telepon"));
                 temp.add(penyewa.username + "-" + penyewa.password + "-" + penyewa.fullname + "-" + penyewa.notelp);
             }
@@ -122,27 +122,25 @@ public class Penyewa {
         }
         return temp;
     }
-    
-    public ArrayList<Penyewa> DaftarPenyewa(String username) {
+
+    public Penyewa SelectPenyewa(String username) {
         getConnection();
-        ArrayList<Penyewa> listPenyewa = new ArrayList<Penyewa>();
         try {
             String query = "SELECT * FROM penyewa WHERE username = ?";
             PreparedStatement sql = (PreparedStatement) connect.prepareStatement(query);
             sql.setString(1, username);
-            result = sql.executeQuery();
-            while(result.next()) {
-                Penyewa p = new Penyewa(
-                        result.getString("username"), 
-                        result.getString("password"),
-                        result.getString("nama"),
-                        result.getString("nomor telepon"));
-                listPenyewa.add(p);
+            sql.execute();
+            result = sql.getResultSet();
+            while (result.next()) {
+                setUsername(result.getString("username"));
+                setPassword(result.getString("password"));
+                setFullname(result.getString("nama"));
+                setNotelp(result.getString("nomor telepon"));
             }
             connect.close();
         } catch (Exception ex) {
             System.out.println(ex);
         }
-        return listPenyewa;
+        return this;
     }
 }
