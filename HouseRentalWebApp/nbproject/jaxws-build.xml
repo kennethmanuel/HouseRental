@@ -26,21 +26,21 @@
             <isset property="conf.dir"/>
         </condition>
     </target>
-    <target name="wsimport-client-HouseRentalWebService" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/HouseRentalWebService"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/HouseRentalWebService" destdir="${build.generated.dir}/jax-wsCache/HouseRentalWebService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/HouseRentalWebService/wsdl/localhost_43556/HouseRentalService/HouseRentalWebService.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:43556/HouseRentalService/HouseRentalWebService?wsdl" xnocompile="true" xendorsed="true">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/HouseRentalWebService/wsdl/localhost_43556/HouseRentalService/HouseRentalWebService.wsdl"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/HouseRentalWebService"/>
+    <target name="wsimport-client-HouseRentalServices" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/HouseRentalServices"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/HouseRentalServices" destdir="${build.generated.dir}/jax-wsCache/HouseRentalServices" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/HouseRentalServices/wsdl/localhost_43556/HouseRentalWS/HouseRentalServices.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:43556/HouseRentalWS/HouseRentalServices?wsdl" xnocompile="true" xendorsed="true" package="com.ubaya.houserental">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/HouseRentalServices/wsdl/localhost_43556/HouseRentalWS/HouseRentalServices.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/HouseRentalServices"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/HouseRentalWebService">
+            <fileset dir="${build.generated.dir}/jax-wsCache/HouseRentalServices">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-HouseRentalWebService" depends="-init-project">
+    <target name="wsimport-client-clean-HouseRentalServices" depends="-init-project">
         <delete dir="${build.generated.sources.dir}/jax-ws/com/ubaya/houserental"/>
-        <delete dir="${build.generated.dir}/jax-wsCache/HouseRentalWebService"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/HouseRentalServices"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-HouseRentalWebService"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-HouseRentalServices"/>
 </project>

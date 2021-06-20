@@ -21,11 +21,11 @@
     <!-- my css -->
     <link rel="stylesheet" href="css/css.css" />
     <title>Hello, world!</title>
-  </head    
-    <%-- start web service invocation --%><hr/>
+  </head>
+
     <%
-	com.ubaya.houserental.HouseRentalWebService_Service service = new com.ubaya.houserental.HouseRentalWebService_Service();
-	com.ubaya.houserental.HouseRentalWebService port = service.getHouseRentalWebServicePort();
+	com.ubaya.houserental.HouseRentalWebService service = new com.ubaya.houserental.HouseRentalWebService();
+	com.ubaya.houserental.HouseRentalWS port = service.getHouseRentalWSPort();
 	 // TODO initialize WS operation arguments here
 	
 	// TODO process result here
@@ -35,9 +35,9 @@
         LocalDate today = LocalDate.now();
         String ym;
         YearMonth yem = YearMonth.of(2021, 1);
-        if (session.getAttribute("username") == null) {
-             response.sendRedirect("login.html");
-            }
+//        if (session.getAttribute("username") == null) {
+//             response.sendRedirect("login.html");
+//            }
         int idrumah =0;
         if (request.getParameterMap().containsKey("idrumah")) {
                 idrumah = Integer.valueOf(request.getParameter("idrumah"));

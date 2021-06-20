@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:43556/HouseRentalService/LoginWS?wsdl" uri="src/conf/xml-resources/web-service-references/LoginWS/wsdl/localhost_43556/HouseRentalService/LoginWS.wsdl"/>
+    <system systemId="http://localhost:43556/HouseRentalService/LoginWS?xsd=1" uri="src/conf/xml-resources/web-service-references/LoginWS/wsdl/localhost_43556/HouseRentalService/LoginWS.xsd_1.xsd"/>
     <system systemId="http://localhost:43556/HouseRentalService/HouseRentalWebService?wsdl" uri="src/conf/xml-resources/web-service-references/HouseRentalWebService/wsdl/localhost_43556/HouseRentalService/HouseRentalWebService.wsdl"/>
     <system systemId="http://localhost:43556/HouseRentalService/HouseRentalWebService?xsd=1" uri="src/conf/xml-resources/web-service-references/HouseRentalWebService/wsdl/localhost_43556/HouseRentalService/HouseRentalWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:43556/HouseRentalWS/HouseRentalServices?wsdl" uri="src/conf/xml-resources/web-service-references/HouseRentalServices/wsdl/localhost_43556/HouseRentalWS/HouseRentalServices.wsdl"/>
+    <system systemId="http://localhost:43556/HouseRentalWS/HouseRentalServices?xsd=1" uri="src/conf/xml-resources/web-service-references/HouseRentalServices/wsdl/localhost_43556/HouseRentalWS/HouseRentalServices.xsd_1.xsd"/>
 </catalog>

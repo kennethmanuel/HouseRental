@@ -4,12 +4,6 @@
 <xsd:import namespace="http://houserental.ubaya.com/" schemaLocation="http://localhost:43556/HouseRentalService/HouseRentalWebService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="register">
-<part name="parameters" element="tns:register"/>
-</message>
-<message name="registerResponse">
-<part name="parameters" element="tns:registerResponse"/>
-</message>
 <message name="hello">
 <part name="parameters" element="tns:hello"/>
 </message>
@@ -28,45 +22,22 @@
 <message name="getRumahResponse">
 <part name="parameters" element="tns:getRumahResponse"/>
 </message>
-<message name="login">
-<part name="parameters" element="tns:login"/>
-</message>
-<message name="loginResponse">
-<part name="parameters" element="tns:loginResponse"/>
-</message>
-<portType name="HouseRentalWebService">
-<operation name="register">
-<input wsam:Action="http://houserental.ubaya.com/HouseRentalWebService/registerRequest" message="tns:register"/>
-<output wsam:Action="http://houserental.ubaya.com/HouseRentalWebService/registerResponse" message="tns:registerResponse"/>
-</operation>
+<portType name="HouseRentalWS">
 <operation name="hello">
-<input wsam:Action="http://houserental.ubaya.com/HouseRentalWebService/helloRequest" message="tns:hello"/>
-<output wsam:Action="http://houserental.ubaya.com/HouseRentalWebService/helloResponse" message="tns:helloResponse"/>
+<input wsam:Action="http://houserental.ubaya.com/HouseRentalWS/helloRequest" message="tns:hello"/>
+<output wsam:Action="http://houserental.ubaya.com/HouseRentalWS/helloResponse" message="tns:helloResponse"/>
 </operation>
 <operation name="getTanggalSewaPerBulan">
-<input wsam:Action="http://houserental.ubaya.com/HouseRentalWebService/getTanggalSewaPerBulanRequest" message="tns:getTanggalSewaPerBulan"/>
-<output wsam:Action="http://houserental.ubaya.com/HouseRentalWebService/getTanggalSewaPerBulanResponse" message="tns:getTanggalSewaPerBulanResponse"/>
+<input wsam:Action="http://houserental.ubaya.com/HouseRentalWS/getTanggalSewaPerBulanRequest" message="tns:getTanggalSewaPerBulan"/>
+<output wsam:Action="http://houserental.ubaya.com/HouseRentalWS/getTanggalSewaPerBulanResponse" message="tns:getTanggalSewaPerBulanResponse"/>
 </operation>
 <operation name="getRumah">
-<input wsam:Action="http://houserental.ubaya.com/HouseRentalWebService/getRumahRequest" message="tns:getRumah"/>
-<output wsam:Action="http://houserental.ubaya.com/HouseRentalWebService/getRumahResponse" message="tns:getRumahResponse"/>
-</operation>
-<operation name="login">
-<input wsam:Action="http://houserental.ubaya.com/HouseRentalWebService/loginRequest" message="tns:login"/>
-<output wsam:Action="http://houserental.ubaya.com/HouseRentalWebService/loginResponse" message="tns:loginResponse"/>
+<input wsam:Action="http://houserental.ubaya.com/HouseRentalWS/getRumahRequest" message="tns:getRumah"/>
+<output wsam:Action="http://houserental.ubaya.com/HouseRentalWS/getRumahResponse" message="tns:getRumahResponse"/>
 </operation>
 </portType>
-<binding name="HouseRentalWebServicePortBinding" type="tns:HouseRentalWebService">
+<binding name="HouseRentalWSPortBinding" type="tns:HouseRentalWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="register">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="hello">
 <soap:operation soapAction=""/>
 <input>
@@ -86,15 +57,6 @@
 </output>
 </operation>
 <operation name="getRumah">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="login">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -105,7 +67,7 @@
 </operation>
 </binding>
 <service name="HouseRentalWebService">
-<port name="HouseRentalWebServicePort" binding="tns:HouseRentalWebServicePortBinding">
+<port name="HouseRentalWSPort" binding="tns:HouseRentalWSPortBinding">
 <soap:address location="http://localhost:43556/HouseRentalService/HouseRentalWebService"/>
 </port>
 </service>

@@ -65,12 +65,14 @@
           <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
         </div>
         <div class="row">
+
     <%
     try {
-	com.ubaya.houserental.HouseRentalWebService_Service service = new com.ubaya.houserental.HouseRentalWebService_Service();
-	com.ubaya.houserental.HouseRentalWebService port = service.getHouseRentalWebServicePort();
+        com.ubaya.houserental.HouseRentalServices_Service service = new com.ubaya.houserental.HouseRentalServices_Service();
+	com.ubaya.houserental.HouseRentalServices port = service.getHouseRentalServicesPort();
 	// TODO process result here
 	java.util.List<com.ubaya.houserental.Rumah> result = port.getRumah();
+	// TODO process result here
         for (int i = 0; i < result.size(); i++) {
                 out.println("<div class='col-lg-4 col-sm-6 mb-4'>");
                 out.println("<div class='portfolio-item'>");
@@ -88,6 +90,7 @@
             }
     } catch (Exception ex) {
 	// TODO handle custom exceptions here
+        out.println(ex);
     }
     %>
           <!-- end -->
@@ -254,11 +257,12 @@
         </div>
       </div>
     </footer>
-    <!-- Portfolio Modals-->
+    <!-- Portfolio Modals-->    <%-- start web service invocation --%><hr/>
+
     <%
     try {
-	com.ubaya.houserental.HouseRentalWebService_Service service = new com.ubaya.houserental.HouseRentalWebService_Service();
-	com.ubaya.houserental.HouseRentalWebService port = service.getHouseRentalWebServicePort();
+	com.ubaya.houserental.HouseRentalServices_Service service = new com.ubaya.houserental.HouseRentalServices_Service();
+	com.ubaya.houserental.HouseRentalServices port = service.getHouseRentalServicesPort();
 	// TODO process result here
 	java.util.List<com.ubaya.houserental.Rumah> result = port.getRumah();
         for (int i = 0; i < result.size(); i++) {
