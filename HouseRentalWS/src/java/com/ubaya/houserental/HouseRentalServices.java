@@ -5,10 +5,12 @@
  */
 package com.ubaya.houserental;
 
+import com.ubaya.model.Chat;
 import com.ubaya.model.Penyewa;
 import com.ubaya.model.Rumah;
 import com.ubaya.model.Sewa;
 import java.util.ArrayList;
+import javax.jws.Oneway;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -112,6 +114,26 @@ public class HouseRentalServices {
         Penyewa p = new Penyewa();
         p.getPenyewa(username);
         return p;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "insertChat")
+    @Oneway
+    public void insertChat(String content, int idpenyewa) {
+        Chat c = new Chat(content,idpenyewa);
+        c.insert();
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "displayChat")
+    public String displayChat(@WebParam(name = "idpenyewa") int idpenyewa) {
+        //TODO write your implementation code here:
+        Chat c = new Chat();
+        return c.display(idpenyewa);
     }
 
     

@@ -78,7 +78,6 @@
       <div class="container">
         <div class="text-center">
           <h2 class="section-heading text-uppercase">Latest Products</h2>
-          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
         </div>
         <div class="row">
 
@@ -280,6 +279,7 @@
 	com.servies.HouseRentalServices port = service.getHouseRentalServicesPort();
 	// TODO process result here
 	java.util.List<com.servies.Rumah> result = port.getRumah();
+        
         Penyewa p = port.getPenyewa(session.getAttribute("username").toString());
         for (int i = 0; i < result.size(); i++) {
                 out.println("<div class='portfolio-modal modal fade' id='portfolioModal"+ result.get(i).getId() +"' tabindex='-1' role='dialog' aria-hidden='true'>");
